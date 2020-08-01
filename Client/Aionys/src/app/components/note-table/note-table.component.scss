@@ -1,0 +1,84 @@
+  
+mat-card {
+    margin-top: 10px;
+    border: 1px solid black;
+}
+  
+table {
+    width: 100%;
+}
+  
+.table-container {
+    position: relative;
+    max-height: 80vh;
+    height: 80vh;
+    overflow: auto;
+    border: 1px solid black;
+}
+  
+.header-row{
+    cursor: pointer;
+}
+  
+.header-row:hover{
+    background: red;
+}
+  
+.mat-column-name {
+    width: 30%;
+    text-align: center;
+}
+
+  
+.btn-remove {
+    color: rgba(255, 0, 0, 0.7);
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+  
+.table-row td {
+    border-bottom-width: 0;
+    text-align: left;
+}
+  
+tr.example-detail-row {
+    height: 0;
+}
+  
+.element-detail {
+    overflow: hidden;
+    display: flex;
+}
+  
+.element-detail {
+    display: flex;
+  
+    .product-list {
+      width: 300px;
+    }
+  
+    .btn-controler {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      button {
+        margin: 10px;
+      }
+    }
+}
+  
+.table-footer {
+    display: flex;
+  
+    button {
+      margin: 10px;
+    }
+  
+    mat-paginator {
+      width: 100%;
+}
+}

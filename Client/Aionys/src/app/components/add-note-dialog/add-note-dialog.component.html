@@ -1,0 +1,23 @@
+<h3 mat-dialog-title>What u need do</h3>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        type="text"
+        formControlName="Name"
+        placeholder="Input"
+      />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="control-btn">
+  <button
+    mat-raised-button
+    (click)="submit()"
+    color="primary"
+    [disabled]="form.invalid">
+    Add note
+  </button>
+  <button mat-button (click)="onDismiss()">Cancel</button>
+</div>
