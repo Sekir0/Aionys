@@ -19,7 +19,7 @@ export class AddNoteDialogComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      Name: new FormControl('', Validators.required)
+      name: new FormControl('', Validators.required)
     });
   }
 

@@ -16,7 +16,7 @@ import { EditNoteDialogComponent } from '../edit-note-dialog/edit-note-dialog.co
   styleUrls: ['./note-table.component.scss']
 })
 export class NoteTableComponent implements OnInit {
-  public displayedColumns: string[] = ["name", "price", "quantity"];
+  public displayedColumns: string[] = ["name"];
   public notesArr = new MatTableDataSource<NoteModel>();
   public extandDetail: NoteModel;
 
@@ -28,8 +28,8 @@ export class NoteTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public removeProduct(note: NoteModel) {
-    const message = `Done?`;
+  public removeNote(note: NoteModel) {
+    const message = 'Done?';
     const dialogData = new ConfirmDialogModel("Confirm Edit", message);
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: "400px",
@@ -45,7 +45,7 @@ export class NoteTableComponent implements OnInit {
     });
   }
 
-  public addProduct() {
+  public addNote() {
     const dialogRef = this.dialog.open(AddNoteDialogComponent, {
       width: "500px"
     });
@@ -59,12 +59,12 @@ export class NoteTableComponent implements OnInit {
     });
   }
 
-  public editProduct(product: NoteModel) {
+  public editNote(note: NoteModel) {
     const dialogRef = this.dialog.open(EditNoteDialogComponent, {
       width: "500px",
       data: {
-        id: product.id,
-        name: product.name
+        id: note.id,
+        name: note.name
       }
     });
 

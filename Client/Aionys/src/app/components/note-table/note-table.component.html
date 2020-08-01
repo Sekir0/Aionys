@@ -1,29 +1,33 @@
 <div>
-    <div class="table-container">
-      <table mat-table [dataSource]="notesArr" multiTemplateDataRows>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row matRipple class="table-row" *matRowDef="let row; columns: displayedColumns"
-          (click)="extandDetail = row"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['extandDetail']" class="example-detail-row"></tr>
-        <ng-container matColumnDef="extandDetail">
-          <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-            <div class="element-detail" [@detailExpand]="element == extandDetail ? 'expanded' : 'collapsed'">
-              <div class="btn-controler">
-                <button mat-icon-button matTooltip="Edit Note" (click)="editNote(element)">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button matTooltip="Remove Note" (click)="removeNote(element)" class="btn-remove">
-                  <mat-icon>clear</mat-icon>
-                </button>
-              </div>
+  <div class="table-container">
+    <table mat-table [dataSource]="notesArr" multiTemplateDataRows>
+      <tr mat-row matRipple class="table-row" *matRowDef="let row; columns: displayedColumns"
+        (click)="extandDetail = row"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['extandDetail']" class="example-detail-row"></tr>
+
+      <ng-container matColumnDef="{{ column }}" *ngFor="let column of displayedColumns">
+        <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="extandDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+          <div class="element-detail" [@detailExpand]="element == extandDetail ? 'expanded' : 'collapsed'">
+            <div class="btn-controler">
+              <button mat-icon-button matTooltip="Edit note" (click)="editNote(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button matTooltip="Remove note" (click)="removeNote(element)" class="btn-remove">
+                <mat-icon>clear</mat-icon>
+              </button>
             </div>
-          </td>
-        </ng-container>
-      </table>
-    </div>
-   <mat-card>
-    <div class="table-footer">
-      <button mat-raised-button color="primary" (click)="addProduct()">Add new product   </button>
-    </div>
-   </mat-card>
+          </div>
+        </td>
+      </ng-container>
+    </table>
   </div>
+ <mat-card>
+  <div class="table-footer">
+    <button mat-raised-button color="primary" (click)="addNote()">Add new note   </button>
+  </div>
+ </mat-card>
+</div>
