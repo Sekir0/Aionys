@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Aionys.BL.Services
@@ -49,9 +48,16 @@ namespace Aionys.BL.Services
         /// Get all notes
         /// </summary>
         /// <returns>all notes</returns>
-        public async Task<List<Note>> GetNotes()
+        public async Task<List<Note>> GetNotes(PaginationFilter paginationFilter = null)
         {
-            return await _dataContext.Notes.ToListAsync();
+            if(paginationFilter == null)
+            {
+                return await _dataContext.Notes.ToListAsync();
+            }
+
+            var skip = (paginationFilter.PageNumber - 1) * paginationFilter.PageSize;
+
+            return await _dataContext.Notes.Skip(skip).Take(paginationFilter.PageSize).ToListAsync();
         }
 
         /// <summary>

@@ -52,7 +52,6 @@ namespace Aionys
 
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
 

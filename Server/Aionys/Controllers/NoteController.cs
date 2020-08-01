@@ -1,6 +1,6 @@
-﻿using Aionys.Contracts;
-using Aionys.Contracts.Requests;
-using Aionys.Contracts.Responses;
+﻿using Aionys.Contractss;
+using Aionys.Contractss.Requests;
+using Aionys.Contractss.Responses;
 using Aionys.DAL.Domain;
 using Aionys.BL.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Aionys.Helpers;
 
 namespace Aionys.Controllers
 {
@@ -16,15 +17,17 @@ namespace Aionys.Controllers
     {
         private readonly INoteService _noteService;
         private readonly IMapper _mapper;
+        private readonly IUriService _uriService;
 
         /// <summary>
         /// magic DI
         /// </summary>
         /// <param name="noteService"></param>
-        public NoteController(INoteService noteService, IMapper mapper)
+        public NoteController(INoteService noteService, IMapper mapper, IUriService uriService)
         {
             _noteService = noteService;
             _mapper = mapper;
+            _uriService = uriService;
         }
 
         /// <summary>
@@ -32,11 +35,19 @@ namespace Aionys.Controllers
         /// </summary>
         /// <returns>all note</returns>
         [HttpGet(ApiRouts.Notes.GetAll)]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] PaginationQuery paginationQuery)
         {
-            var notes = await _noteService.GetNotes();
-            
-            return Ok(_mapper.Map<List<NoteResponse>>(notes));
+            var pagination = _mapper.Map<PaginationFilter>(paginationQuery);
+            var notes = await _noteService.GetNotes(pagination);
+            var noteResponse = _mapper.Map<List<NoteResponse>>(notes);
+
+            if (pagination == null || pagination.PageNumber < 1 || pagination.PageSize < 1)
+            {
+                return Ok(new PagedResponse<NoteResponse>(noteResponse));
+            }
+
+            var paginationResponse = PaginationHelpers.CreatePaginatedResponse(_uriService, pagination, noteResponse);
+            return Ok(paginationResponse);
         }
 
         /// <summary>
@@ -49,10 +60,7 @@ namespace Aionys.Controllers
         {
             var note = await _noteService.GetNoteById(noteId);
 
-            if (note == null)
-                return NotFound();
-
-            return Ok(_mapper.Map<NoteResponse>(note));
+            return Ok(new Response<NoteResponse>(_mapper.Map<NoteResponse>(note)));
         }
 
         /// <summary>
@@ -70,7 +78,7 @@ namespace Aionys.Controllers
             var update = await _noteService.UpdateNote(note);
 
             if(update)
-                return Ok(_mapper.Map<NoteResponse>(note));
+                return Ok(new Response<NoteResponse>(_mapper.Map<NoteResponse>(note)));
 
             return NotFound();
         }
@@ -103,10 +111,8 @@ namespace Aionys.Controllers
 
             await _noteService.CreateNote(note);
 
-            var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-            var locationUrl = baseUrl + "/" + ApiRouts.Notes.GetById.Replace("{noteId}", note.Id.ToString());
-
-            return Created(locationUrl, _mapper.Map<NoteResponse>(note));
+            var locationUri = _uriService.GetNoteUri(note.Id.ToString());
+            return Created(locationUri, new Response<NoteResponse>(_mapper.Map<NoteResponse>(note)));
         }
     }
 }

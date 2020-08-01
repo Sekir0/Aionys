@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aionys.Contracts
+namespace Aionys.Contractss
 {
     /// <summary>
     /// routing

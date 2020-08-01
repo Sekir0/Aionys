@@ -1,4 +1,4 @@
-﻿using Aionys.Contractss.Responses;
+﻿using Aionys.Contractss.Requests;
 using Aionys.DAL.Domain;
 using AutoMapper;
 using System;
@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Aionys.Mapping
 {
-    public class DomainToResponse : Profile
+    public class RequestToDomain : Profile
     {
-        public DomainToResponse()
+        public RequestToDomain()
         {
-            CreateMap<Note, NoteResponse>();
+            CreateMap<PaginationQuery, PaginationFilter>();
         }
     }
 }

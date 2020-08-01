@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aionys.Contracts.Responses
+namespace Aionys.Contractss.Responses
 {
     public class NoteResponse
     {

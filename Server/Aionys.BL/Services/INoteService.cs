@@ -1,7 +1,6 @@
 ﻿using Aionys.DAL.Domain;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Aionys.BL.Services
@@ -11,7 +10,7 @@ namespace Aionys.BL.Services
     /// </summary>
     public interface INoteService
     {
-        Task<List<Note>> GetNotes();
+        Task<List<Note>> GetNotes(PaginationFilter paginationFilter = null);
 
         Task<Note> GetNoteById(Guid noteId);
 

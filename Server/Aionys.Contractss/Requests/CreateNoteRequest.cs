@@ -4,12 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aionys.Contracts.Requests
+namespace Aionys.Contractss.Requests
 {
     public class CreateNoteRequest
     {
-        [Required]
-        [StringLength(1000)]
         public string Name { get; set; }
     }
 }
