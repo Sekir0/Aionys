@@ -10,7 +10,7 @@ import { tap, delay } from 'rxjs/operators';
 
 export class NoteService {
     public notes$: BehaviorSubject<NoteModel[]> = new BehaviorSubject([]);
-    private readonly baseUrl = 'https://localhost:5001/api/v1/';
+    private readonly baseUrl = 'https://localhost:5001/api/v1/notes';
 
     constructor(private http: HttpClient) {}
 
