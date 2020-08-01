@@ -8,30 +8,35 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Aionys.Controllers
 {
     public class NoteController : Controller
     {
         private readonly INoteService _noteService;
+        private readonly IMapper _mapper;
 
         /// <summary>
         /// magic DI
         /// </summary>
         /// <param name="noteService"></param>
-        public NoteController(INoteService noteService)
+        public NoteController(INoteService noteService, IMapper mapper)
         {
             _noteService = noteService;
+            _mapper = mapper;
         }
 
         /// <summary>
-        /// Get all controller
+        /// Get all notes
         /// </summary>
         /// <returns>all note</returns>
         [HttpGet(ApiRouts.Notes.GetAll)]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _noteService.GetNotes());
+            var notes = await _noteService.GetNotes();
+            
+            return Ok(_mapper.Map<List<NoteResponse>>(notes));
         }
 
         /// <summary>
@@ -47,7 +52,7 @@ namespace Aionys.Controllers
             if (note == null)
                 return NotFound();
 
-            return Ok(note);
+            return Ok(_mapper.Map<NoteResponse>(note));
         }
 
         /// <summary>
@@ -59,16 +64,13 @@ namespace Aionys.Controllers
         [HttpPut(ApiRouts.Notes.Update)]
         public async Task<IActionResult> Update([FromRoute] Guid noteId, [FromBody] UpdateNoteRequest request)
         {
-            var note = new Note
-            {
-                Id = noteId,
-                Name = request.Name
-            };
+            var note = await _noteService.GetNoteById(noteId);
+            note.Name = request.Name;
 
             var update = await _noteService.UpdateNote(note);
 
             if(update)
-                return Ok();
+                return Ok(_mapper.Map<NoteResponse>(note));
 
             return NotFound();
         }
@@ -104,8 +106,7 @@ namespace Aionys.Controllers
             var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
             var locationUrl = baseUrl + "/" + ApiRouts.Notes.GetById.Replace("{noteId}", note.Id.ToString());
 
-            var response = new NoteResponse { Id = note.Id };
-            return Created(locationUrl, response);
+            return Created(locationUrl, _mapper.Map<NoteResponse>(note));
         }
     }
 }
