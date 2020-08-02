@@ -13,12 +13,13 @@ namespace Aionys.Configurations
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
+            services.AddHttpContextAccessor();
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Aionys", Version = "v1" });
             });
 
-            services.AddHttpContextAccessor();
+            services.AddControllers();
 
             services.AddSingleton<IUriService>(provider =>
             {

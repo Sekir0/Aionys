@@ -47,8 +47,8 @@ namespace Aionys.BL.Services
         /// <summary>
         /// Get all notes
         /// </summary>
-        /// <returns>all notes</returns>
-        public async Task<List<Note>> GetNotes(PaginationFilter paginationFilter = null)
+        /// <returns>all notes or </returns>
+        public async Task<List<Note>> GetNotes(PaginationFilter paginationFilter)
         {
             if(paginationFilter == null)
             {

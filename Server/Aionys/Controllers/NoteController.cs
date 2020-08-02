@@ -35,7 +35,7 @@ namespace Aionys.Controllers
         /// </summary>
         /// <returns>all note</returns>
         [HttpGet(ApiRouts.Notes.GetAll)]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationQuery paginationQuery)
+        public async Task<IActionResult> GetAll([FromQuery]PaginationQuery paginationQuery)
         {
             var pagination = _mapper.Map<PaginationFilter>(paginationQuery);
             var notes = await _noteService.GetNotes(pagination);

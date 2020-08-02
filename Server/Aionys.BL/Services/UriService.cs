@@ -21,8 +21,10 @@ namespace Aionys.BL.Services
             var uri = new Uri(_baseUri);
 
             if (pagination == null)
+            {
                 return uri;
-
+            }
+                
             var modifiedUri = QueryHelpers.AddQueryString(_baseUri, "pageNumber", pagination.PageNumber.ToString());
             modifiedUri = QueryHelpers.AddQueryString(modifiedUri, "pageSize", pagination.PageSize.ToString());
 

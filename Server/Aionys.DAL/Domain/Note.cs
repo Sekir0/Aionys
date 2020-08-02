@@ -7,8 +7,7 @@ namespace Aionys.DAL.Domain
     {
         [Key]
         public Guid Id { get; set; }
-        [Required]
-        [StringLength(1000)]
+
         public string Name { get; set; }
 
     }

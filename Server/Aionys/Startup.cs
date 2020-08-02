@@ -23,7 +23,6 @@ namespace Aionys
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
             services.InstallServicesInAssembly(Configuration);
             services.AddAutoMapper(typeof(Startup));
         }
