@@ -3,7 +3,6 @@ import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
-import { animate,state,style,transition,trigger } from "@angular/animations";
 import { AddNoteDialogComponent } from "../add-note-dialog/add-note-dialog.component";
 import { NoteModel } from "../../models/note.model";
 import { NoteService } from "../../services/note.service";
@@ -20,13 +19,19 @@ export class NoteTableComponent implements OnInit {
   public notesArr = new MatTableDataSource<NoteModel>();
   public extandDetail: NoteModel;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(
     private _noteService: NoteService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
-  }
+    this._noteService.getNotes().subscribe(data => {
+      this.notesArr.data = data.data;
+      this.notesArr.paginator = this.paginator;
+    });
+ }
 
   public removeNote(note: NoteModel) {
     const message = 'Done?';

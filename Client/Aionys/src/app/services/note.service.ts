@@ -22,7 +22,7 @@ export class NoteService {
         );
     }
 
-    public getNotes(): Observable<NoteModel[]>{
+    public getNotes(): Observable<any>{
         return this.http.get<NoteModel[]>(`${this.baseUrl}`);
     }
 
