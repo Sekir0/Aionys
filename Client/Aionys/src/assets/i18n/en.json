@@ -1,0 +1,12 @@
+{
+    "HOME":{
+        "TITLE": "Notes",
+        "BUTTONADD": "Add new note"
+    },
+    "BUTTON":{
+        "LANG":{
+            "RU": "ru",
+            "EN": "en"
+        }
+    }
+}
