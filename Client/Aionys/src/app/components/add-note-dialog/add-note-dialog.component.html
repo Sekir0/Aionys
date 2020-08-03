@@ -1,5 +1,5 @@
 <h3 mat-dialog-title>What u need do</h3>
-<div mat-dialog-content>
+<div mat-dialog-content class="dialog">
   <form [formGroup]="form">
     <mat-form-field class="">
       <input
@@ -11,13 +11,13 @@
     </mat-form-field>
   </form>
 </div>
-<div mat-dialog-actions class="control-btn">
-  <button
+<div mat-dialog-actions class="">
+  <button 
     mat-raised-button
     (click)="submit()"
     color="primary"
     [disabled]="form.invalid">
     Add note
   </button>
-  <button mat-button (click)="onDismiss()">Cancel</button>
+  <button mat-button (click)="onDismiss()" class="butootc">Cancel</button>
 </div>
