@@ -1,0 +1,24 @@
+<h3 mat-dialog-title>Edit</h3>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        [(ngModel)]="data.name"
+        type="text"
+        formControlName="curName"
+        placeholder="Note name"
+      />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="control-btn">
+  <button
+    mat-raised-button
+    (click)="onEdit()"
+    color="primary"
+    [disabled]="form.invalid">
+    Edit
+  </button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</div>
