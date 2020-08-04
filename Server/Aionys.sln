@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aionys.DAL", "Aionys.DAL\Ai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aionys.BL", "Aionys.BL\Aionys.BL.csproj", "{99F4678B-BC1E-4CB6-9074-C3E9C3C0CCD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aionys.Contractss", "Aionys.Contractss\Aionys.Contractss.csproj", "{80C2EF73-D0E6-4398-8D3F-F2723F73DD18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aionys.Contractss", "Aionys.Contractss\Aionys.Contractss.csproj", "{80C2EF73-D0E6-4398-8D3F-F2723F73DD18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

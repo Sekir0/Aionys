@@ -11,6 +11,15 @@ namespace Aionys.Helpers
 {
     public class PaginationHelpers
     {
+        /// <summary>
+        /// Настройки пагинации
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="uriService">интерфейс</param>
+        /// <param name="pagination">фильтр для пагинации</param>
+        /// <param name="response">возвращает лист данных</param>
+        /// <returns>возвращает данные, номер страницы, размер страницы,
+        /// параметры для получения следующей страницы и для предыдущей</returns>
         public static PagedResponse<T> CreatePaginatedResponse<T>(IUriService uriService, PaginationFilter pagination, List<T> response)
         {
             var nextPage = pagination.PageNumber >= 1

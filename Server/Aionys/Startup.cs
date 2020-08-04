@@ -19,7 +19,7 @@ namespace Aionys
         public IConfiguration Configuration { get; }
 
         /// <summary>
-        /// All services in folder Contracts
+        /// Все сервисы и зависимости в папке Configurations
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
