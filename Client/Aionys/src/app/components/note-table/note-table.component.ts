@@ -9,6 +9,7 @@ import { NoteService } from "../../services/note.service";
 import { ConfirmDialogModel } from '../../models/confirm-dialog.model';
 import { EditNoteDialogComponent } from '../edit-note-dialog/edit-note-dialog.component';
 
+
 @Component({
   selector: 'app-note-table',
   templateUrl: './note-table.component.html',

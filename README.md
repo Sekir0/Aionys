@@ -15,4 +15,4 @@
 + Для запуска UI нужно:
   + В консоли открыть корень проекта ".../Aionys" -> вводим "npm i" скачиваем пакеты -> "npm start" ждем билд проект -> открываем браузер -> http://localhost:4200/
 
-![alt text](https://lh3.googleusercontent.com/pw/ACtC-3e60X_DQ262oePQEldSjmQc2LKZvV_8v-KBmA0iZzz2kHhLcB-_N3t-kzhbaMHICBGxxQ8xeavK9PYTK52U-Qazd_k5sVAd-F3YLtzrRnfQRG3tK4EN3gz3SnmPlDIdJBtgGngvx4gjKTzeo4LGLTn_=w1279-h799-no?authuser=0)
+![alt text](https://lh3.googleusercontent.com/pw/ACtC-3d5cXHYoiIgdx9LG2txMp3PDC2vNvhMbcy2DoLkH9d4qVGTcj5O0JKYrhOYMgY3erWhIjpTcbGKEtduW8DlXsLvLal0WRpYtB207eXF0JAfTXWOoDRNQoX11xeqt0ZvI4qRwGyyn84LnDsSFZXPN_uk=w1321-h799-no?authuser=0)
