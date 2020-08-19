@@ -30,6 +30,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { AddNoteDialogComponent } from './components/add-note-dialog/add-note-dialog.component';
 import { NoteTableComponent } from './components/note-table/note-table.component';
 import { EditNoteDialogComponent } from './components/edit-note-dialog/edit-note-dialog.component';
+import { NoteService } from './services/note.service';
 
 
 
@@ -69,9 +70,7 @@ import { EditNoteDialogComponent } from './components/edit-note-dialog/edit-note
       }
     })
   ],
-  providers: [
-
-  ],
+  providers: [ ],
   bootstrap: [ MainComponent ]
 })
 export class AppModule { 
