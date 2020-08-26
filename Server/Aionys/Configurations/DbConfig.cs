@@ -7,9 +7,6 @@ using Microsoft.AspNetCore.Http;
 
 namespace Aionys.Configurations
 {
-    /// <summary>
-    /// Db configurations and lifetime DI containers
-    /// </summary>
     public class DbConfig : IInstaller
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)

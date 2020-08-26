@@ -28,11 +28,9 @@ namespace Aionys.Controllers
         }
 
         /// <summary>
-        /// Возвращает все заметки
+        /// return all notes or a specified number of notes
         /// </summary>
-        /// <param name="paginationQuery">Параметры для пагинатора</param>
-        /// <returns>Все заметки если не заданы параметры для пагинатора,
-        /// либо возвращает заданную страницу с заданным размером страницы</returns>
+        /// <param name="paginationQuery">paginator parameters</param>
         [HttpGet(ApiRouts.Notes.GetAll)]
         public async Task<IActionResult> GetAll([FromQuery]PaginationQuery paginationQuery)
         {
@@ -50,10 +48,10 @@ namespace Aionys.Controllers
         }
 
         /// <summary>
-        /// Получение заметки по Id
+        /// get note by id
         /// </summary>
         /// <param name="noteId">note Id</param>
-        /// <returns>Возвращает определенную заметку по Id</returns>
+        /// <returns>returns note by id</returns>
         [HttpGet(ApiRouts.Notes.GetById)]
         public async Task<IActionResult> GetById([FromRoute] Guid noteId)
         {
@@ -63,11 +61,10 @@ namespace Aionys.Controllers
         }
 
         /// <summary>
-        /// Обновление заметки по Id
+        /// update note by Id
         /// </summary>
         /// <param name="noteId">note Id</param>
-        /// <param name="request">Имеет свойство Name</param>
-        /// <returns>update - bool если true обновляем заметку, false - NotFound</returns>
+        /// <returns>update - bool if true update note, false - NotFound</returns>
         [HttpPut(ApiRouts.Notes.Update)]
         public async Task<IActionResult> Update([FromRoute] Guid noteId, [FromBody] UpdateNoteRequest request)
         {
@@ -83,10 +80,10 @@ namespace Aionys.Controllers
         }
 
         /// <summary>
-        /// Удаление заметки по id
+        /// deleted note by id
         /// </summary>
         /// <param name="noteId">note Id</param>
-        /// <returns>deleted - bool если = true удаляем, если нет возвращаем NotFound</returns>
+        /// <returns>deleted - bool if = true deleted, else return NotFound</returns>
         [HttpDelete(ApiRouts.Notes.Delete)]
         public async Task<IActionResult> Delete([FromRoute] Guid noteId)
         {
@@ -99,10 +96,10 @@ namespace Aionys.Controllers
         }
 
         /// <summary>
-        /// Создание новой заметки
+        /// Сcreate new note
         /// </summary>
-        /// <param name="noteRequest">Имеет свойство Name</param>
-        /// <returns>созданую заметку</returns>
+        /// <param name="noteRequest">Name</param>
+        /// <returns>return created note</returns>
         [HttpPost(ApiRouts.Notes.Create)]
         public async Task<IActionResult> Create([FromBody] CreateNoteRequest noteRequest)
         {

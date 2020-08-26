@@ -18,10 +18,10 @@ namespace Aionys.BL.Services
         }
 
         /// <summary>
-        /// Удаление заметки
+        /// deleted note
         /// </summary>
         /// <param name="noteId"></param>
-        /// <returns>deleted - целочисленное значение, если > 0 - возвращает true</returns>
+        /// <returns>deleted - int, if > 0 - return true</returns>
         public async Task <bool> DeleteNote(Guid noteId)
         {
             var note = await GetNoteById(noteId);
@@ -35,22 +35,22 @@ namespace Aionys.BL.Services
         }
 
         /// <summary>
-        /// Получение заметки по Id
+        /// get note by Id
         /// </summary>
         /// <param name="noteId"></param>
-        /// <returns>Возвращает заметку по Id</returns>
+        /// <returns>return note by Id</returns>
         public async Task<Note> GetNoteById(Guid noteId)
         {
             return await _dataContext.Notes.SingleOrDefaultAsync(x => x.Id == noteId);
         }
 
         /// <summary>
-        /// Получаем все заметки с бд
+        /// get all note, or a specified number of notes
         /// </summary>
-        /// <param name="paginationFilter">пагинатор</param>
-        /// <returns>Может вернуть все заметки (100),
-        /// либо можем задать параметры для пагинатора и вернуть
-        /// определенную страницу и количество заметок</returns>
+        /// <param name="paginationFilter">pagination filter</param>
+        /// <returns> Can return all notes,
+        /// or we can set parameters for the paginator and return
+        /// a specific page and number of notes</returns>
         public async Task<List<Note>> GetNotes(PaginationFilter paginationFilter)
         {
             if(paginationFilter == null)
@@ -64,10 +64,10 @@ namespace Aionys.BL.Services
         }
 
         /// <summary>
-        /// Обновление заметок
+        /// updete note
         /// </summary>
         /// <param name="updateNote"></param>
-        /// <returns>updated - целочисленный тип, если > 0 возвращает true</returns>
+        /// <returns>updated - int, if > 0 return true</returns>
         public async Task<bool> UpdateNote(Note updateNote)
         {
             _dataContext.Notes.Update(updateNote);
@@ -76,10 +76,10 @@ namespace Aionys.BL.Services
         }
 
         /// <summary>
-        /// Создание новых заметок
+        /// create new note
         /// </summary>
         /// <param name="note">note name</param>
-        /// <returns>created > 0 return true</returns>
+        /// <returns>if created > 0 return true</returns>
         public async Task<bool> CreateNote(Note note)
         {
             await _dataContext.Notes.AddAsync(note);

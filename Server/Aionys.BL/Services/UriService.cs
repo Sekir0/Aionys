@@ -16,11 +16,6 @@ namespace Aionys.BL.Services
             _baseUri = baseUri;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pagination">параметры для пагинации</param>
-        /// <returns></returns>
         public Uri GetAllNotesUri(PaginationQuery pagination = null)
         {
             var uri = new Uri(_baseUri);
@@ -36,11 +31,6 @@ namespace Aionys.BL.Services
             return new Uri(modifiedUri);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="noteId">note Id</param>
-        /// <returns></returns>
         public Uri GetNoteUri(string noteId)
         {
             return new Uri(_baseUri + ApiRouts.Notes.GetAll.Replace("{noteId}", noteId));

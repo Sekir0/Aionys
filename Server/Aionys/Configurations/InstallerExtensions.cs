@@ -5,9 +5,6 @@ using System.Linq;
 
 namespace Aionys.Configurations
 {
-    /// <summary>
-    /// Installer Extensions
-    /// </summary>
     public static class InstallerExtensions
     {
         public static void InstallServicesInAssembly(this IServiceCollection services, IConfiguration configuration)
