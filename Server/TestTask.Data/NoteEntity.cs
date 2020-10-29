@@ -1,14 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Aionys.DAL.Domain
+namespace TestTask.Data
 {
-    public class Note
+    public class NoteEntity
     {
-        [Key]
         public Guid Id { get; set; }
 
-        public string Name { get; set; }
-
+        [Required]
+        public string Note { get; set; }
     }
 }

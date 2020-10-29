@@ -1,8 +1,6 @@
-﻿using Aionys.DAL.Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-
-namespace Aionys.Data
+namespace TestTask.Data
 {
     public class DataContext : DbContext
     {
@@ -10,6 +8,6 @@ namespace Aionys.Data
         {
         }
 
-        public DbSet<Note> Notes { get; set; }
+        public DbSet<NoteEntity> NoteEntities { get; set; }
     }
 }

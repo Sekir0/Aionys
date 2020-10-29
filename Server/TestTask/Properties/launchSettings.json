@@ -3,16 +3,16 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:50960",
-      "sslPort": 44308
+      "applicationUrl": "http://localhost:64027",
+      "sslPort": 44316
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "Aionys": {
+    "TestTask": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "http://localhost:5000/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
