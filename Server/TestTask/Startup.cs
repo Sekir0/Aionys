@@ -30,6 +30,7 @@ namespace TestTask
 
             services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase(databaseName: "TestTask"));
 
+            services.AddScoped<INoteStorage, NoteStorage>();
             services.AddScoped<INoteService, NoteService>();
         }
 
@@ -49,6 +50,7 @@ namespace TestTask
             }
 
             app.UseRouting();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

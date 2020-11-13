@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace TestTask.Data
+namespace TestTask.Models
 {
-    public class NoteEntity
+    public class NoteUpdateViewModel
     {
-        [Required]
-        public long Id { get; set; }
-
         [Required]
         public string Content { get; set; }
     }

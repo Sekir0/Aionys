@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+
 namespace TestTask.Models
 {
-    public class NoteModel
+    public class NoteCreateViewModel
     {
         [Required]
-        public string Note { get; set; }
+        public string Content { get; set; }
     }
 }

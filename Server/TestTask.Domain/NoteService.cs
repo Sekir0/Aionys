@@ -1,51 +1,54 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TestTask.Data;
 
 namespace TestTask.Domain
 {
     public class NoteService : INoteService
     {
-        private readonly DataContext _context;
+        private readonly INoteStorage _noteStorage;
 
-        public NoteService(DataContext context)
+        public NoteService(INoteStorage noteStorage)
         {
-            _context = context;
+            _noteStorage = noteStorage;
         }
 
-        public async Task CreateNote(NoteEntity note)
+        public async Task<(DomainResult, string)> CreateAsync(string content)
         {
-            var created = await _context.NoteEntities.AddAsync(note);
-            await _context.SaveChangesAsync();
+            var note = new Note(default, content);
+
+            var noteId = await _noteStorage.InsertAsync(note);
+
+            return (DomainResult.Success(), noteId);
         }
 
-        public async Task DeleteNote(Guid id)
+        public async Task DeleteAsync(string id)
         {
-            var note = await _context.NoteEntities.SingleOrDefaultAsync(x => x.Id == id);
-
-            _context.NoteEntities.Remove(note);
-            await _context.SaveChangesAsync();
+            await _noteStorage.DeleteNote(id);
         }
 
-        public async Task<NoteEntity> GetNoteById(Guid id)
+        public async Task<Note> GetByIdAsync(string id)
         {
-            return await _context.NoteEntities.SingleOrDefaultAsync(x => x.Id == id);
+            return await _noteStorage.GetNoteById(id);
         }
 
-        public async Task<List<NoteEntity>> GetNotes()
+        public async Task<IEnumerable<Note>> GetNotesAsync()
         {
-            return await _context.NoteEntities.ToListAsync();
+            return await _noteStorage.GetNotes();
         }
 
-        public async Task UpdateNote(Guid id, string content)
+        public async Task<DomainResult> UpdateAsync(string id, string content)
         {
-            var note = await _context.NoteEntities.FirstOrDefaultAsync(x => x.Id == id);
-            note.Note = content;
+            var note = await _noteStorage.GetNoteById(id);
 
-            _context.NoteEntities.Update(note);
-            await _context.SaveChangesAsync();
+            if (note == null)
+            {
+                return DomainResult.Error("Note not found");
+            }
+
+            note.Update(content);
+            await _noteStorage.UpdateNote(id, note);
+            return DomainResult.Success();
         }
     }
 }

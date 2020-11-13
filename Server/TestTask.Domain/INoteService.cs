@@ -1,20 +1,19 @@
-﻿using System;
+﻿using Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TestTask.Data;
 
 namespace TestTask.Domain
 {
     public interface INoteService
     {
-        Task<List<NoteEntity>> GetNotes();
+        Task<Note> GetByIdAsync(string id);
 
-        Task<NoteEntity> GetNoteById(Guid id);
+        Task<IEnumerable<Note>> GetNotesAsync();
 
-        Task CreateNote(NoteEntity note);
+        Task<(DomainResult, string)> CreateAsync(string content);
 
-        Task UpdateNote(Guid id, string content);
+        Task<DomainResult> UpdateAsync(string id, string content);
 
-        Task DeleteNote(Guid id);
+        Task DeleteAsync(string id);
     }
 }
